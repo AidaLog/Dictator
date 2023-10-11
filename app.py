@@ -1,11 +1,7 @@
-from transformers import VitsModel, AutoTokenizer
-import torch
+from hugpipe import *
 from IPython.display import Audio
 import streamlit as st
 
-# initialize model
-model = VitsModel.from_pretrained("facebook/mms-tts-eng")
-tokenizer = AutoTokenizer.from_pretrained("facebook/mms-tts-eng")
 
 
 st.title("Text to Speech App with Transformers")
@@ -24,6 +20,9 @@ if st.button("Convert to Speech"):
         # Display audio using IPython's Audio widget
         audio_display = Audio(data=output.numpy(), rate=model.config.sampling_rate)
         st.audio(output.float().numpy(), sample_rate=model.config.sampling_rate)
+
+        # Download audio file
+        st.success("File ready to play and download")
 
     else:
         st.warning("Please enter some text before converting.")
