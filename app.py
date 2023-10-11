@@ -23,7 +23,7 @@ if st.button("Convert to Speech"):
 
         # Display audio using IPython's Audio widget
         audio_display = Audio(data=output.numpy(), rate=model.config.sampling_rate)
-        st.audio(output.numpy(), model.config.sampling_rate)
+        st.audio(output.float().numpy(), sample_rate=model.config.sampling_rate)
 
     else:
         st.warning("Please enter some text before converting.")
