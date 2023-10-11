@@ -3,7 +3,7 @@ import streamlit as st
 
 
 
-st.title("HugPipe Text Dictator 🎙🎙")
+st.title("👴 HugPipe Text Dictator 🎙")
 
 # Input text
 input_text = st.text_area("Enter text for conversion")
