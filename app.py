@@ -11,13 +11,9 @@ input_text = st.text_area("Enter text for conversion")
 # Button to convert text to speech
 if st.button("Convert to Speech"):
     if input_text:
-        inputs = tokenizer(input_text, return_tensors="pt")
-        with torch.no_grad():
-            output = model(**inputs).waveform
-
-        # Display audio using IPython's Audio widget
-        st.audio(output.float().numpy(), sample_rate=model.config.sampling_rate)
-
+        # Generate audio
+        output, rate = generate(input_text)
+        st.audio(output, format="audio/wav", sample_rate=rate)
         # Download audio file
         st.success("File ready to play and download")
 
