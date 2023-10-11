@@ -21,7 +21,9 @@ if st.button("Convert to Speech"):
         with torch.no_grad():
             output = model(**inputs).waveform
 
-            # Play audio
-        st.audio(output.numpy(), format="audio/wav")
+        # Display audio using IPython's Audio widget
+        audio_display = Audio(data=output.numpy(), rate=model.config.sampling_rate)
+        st.write(audio_display)
+
     else:
         st.warning("Please enter some text before converting.")
