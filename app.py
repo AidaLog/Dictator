@@ -1,7 +1,8 @@
 from hugpipe import *
 import streamlit as st
 
-
+# configure app browser tab title
+st.set_page_config(page_title="HugPipe Text Dictator", page_icon="🎙", layout="centered", initial_sidebar_state="auto")
 
 st.title("👴 HugPipe Text Dictator 🎙")
 
