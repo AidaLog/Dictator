@@ -16,12 +16,12 @@ input_text = st.text_area("Enter text for conversion")
 # Button to convert text to speech
 if st.button("Convert to Speech"):
     if input_text:
-        inputs = tokenizer(text, return_tensors="pt")
+        inputs = tokenizer(input_text, return_tensors="pt")
 
         with torch.no_grad():
             output = model(**inputs).waveform
 
             # Play audio
-        st.audio(audio.numpy(), format="audio/wav")
+        st.audio(output.numpy(), format="audio/wav")
     else:
         st.warning("Please enter some text before converting.")
