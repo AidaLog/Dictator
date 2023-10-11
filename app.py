@@ -1,5 +1,4 @@
 from hugpipe import *
-from IPython.display import Audio
 import streamlit as st
 
 
@@ -13,12 +12,10 @@ input_text = st.text_area("Enter text for conversion")
 if st.button("Convert to Speech"):
     if input_text:
         inputs = tokenizer(input_text, return_tensors="pt")
-
         with torch.no_grad():
             output = model(**inputs).waveform
 
         # Display audio using IPython's Audio widget
-        audio_display = Audio(data=output.numpy(), rate=model.config.sampling_rate)
         st.audio(output.float().numpy(), sample_rate=model.config.sampling_rate)
 
         # Download audio file
